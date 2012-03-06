@@ -1,0 +1,25 @@
+1\ A simple GUI is implemented for the adress book programmer. 
+2\ Function offered:
+   You could create a new adress book by click on the create button. 
+   
+   Then you have to input the info in the text field following a fixed format.
+   
+   Some examples are already offered in this README file.
+
+   Then click search button to find a person with phone number. You could only input part of the phone number.
+
+   The limitation of the programmer is only first person found will be returned.
+
+3\ The generated adress book is adress book.xml
+
+4\ log file is test log
+
+5\ on the GUI, there is simple guide for your use
+
+
+examples:
+
+mark/12345678/ChangNing 
+nick/34557845/TianShan
+tom/12365778/Jianging
+
