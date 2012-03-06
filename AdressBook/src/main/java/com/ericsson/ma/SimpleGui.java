@@ -42,7 +42,9 @@ public class SimpleGui extends Thread{
     	   textFieldProgram.setEditable(false);
     	   textFieldProgram.setFont(bigFont);
     	   textFieldProgram.setLineWrap(true);
-    	   textFieldProgram.setText("create the button to create a new AdressBook"+"\n"+"or just use default one");
+    	   textFieldProgram.setText("operations you could do:"+"\n"+"1\\ create a new adress book by click on create button");
+    	   textFieldProgram.append("\n"+"2\\ search person by phone by click on search button"+"\n");
+    	   textFieldProgram.append("  default adress book will be used!");
     	   panel.add(textFieldProgram);
     	   panel.add(textFieldUser);
     	   textFieldUser.requestFocus();
@@ -67,7 +69,10 @@ public class SimpleGui extends Thread{
     		XMLFileGenerate xmlHandle = new XMLFileGenerate();
     		xmlHandle.generateXMLFile();
     		xmlHandle = null;
-    		textFieldProgram.setText("input as Mark/021-12345678/Tianshan Road");
+    		textFieldProgram.setText(" please input the info in the following textfield!"+"\n");
+    		textFieldProgram.append(" format as Mark/021-12345678/Tianshan Road");
+    		textFieldProgram.append("\n please end with an enter");
+    		textFieldProgram.append("\n whenever you finish input,just click on search button to start search");
     		readOrWrite = true; //write
     	}
     }
@@ -85,6 +90,10 @@ public class SimpleGui extends Thread{
     		else{
     			ArrayList<PersonInfo> person = xmlHandelSearch.searchFile(userInput);
  	
+    			if(person == null){
+    				textFieldProgram.setText("no mapping found");
+    				return;
+    			}
                 textFieldProgram.setText(null);
     			if(person.isEmpty() != true){
     				for(short index = 0; index < person.size(); ++index){
