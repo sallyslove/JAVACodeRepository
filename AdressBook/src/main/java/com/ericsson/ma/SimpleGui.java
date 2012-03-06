@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import com.ericsson.ma.XMLFileGenerate;
 import com.ericsson.ma.XMLFileSearch;
@@ -27,7 +28,7 @@ public class SimpleGui extends Thread{
        JTextArea textFieldProgram  = new JTextArea();
        JTextField textFieldUser = new JTextField(20); 
        boolean readOrWrite = false;  // read
-       Font bigFont = new Font("sanserif", Font.BOLD, 20);
+       Font bigFont = new Font("sanserif", Font.BOLD, 16);
        Logger logger = LoggerFactory.getLogger(SimpleGui.class);
        
        public void run() {
@@ -82,12 +83,15 @@ public class SimpleGui extends Thread{
     			xmlHandle.addNewNode(userInput);
     		}
     		else{
-    			PersonInfo person = xmlHandelSearch.searchFile(userInput);
-
-    			if(person != null){
-    				textFieldProgram.setText("name Found:  "+person.getName()+"\n");
-        			textFieldProgram.append("phone number:  "+person.getPhoneNumber()+"\n");
-        			textFieldProgram.append("adress:  "+person.getAdress());
+    			ArrayList<PersonInfo> person = xmlHandelSearch.searchFile(userInput);
+ 	
+                textFieldProgram.setText(null);
+    			if(person.isEmpty() != true){
+    				for(short index = 0; index < person.size(); ++index){
+    					textFieldProgram.append("name Found:  "+person.get(index).getName()+"\n");
+        			    textFieldProgram.append("phone number: " +person.get(index).getPhoneNumber()+"\n");
+        			    textFieldProgram.append("adress:  "+person.get(index).getAdress()+"\n");
+    				}
     			}
     			else{
     				textFieldProgram.setText("No mapping found!");

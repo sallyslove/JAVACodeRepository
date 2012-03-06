@@ -1,6 +1,7 @@
 package com.ericsson.ma;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,9 +19,9 @@ import org.xml.sax.SAXException;
 public class XMLFileSearch {
 	Logger logger = LoggerFactory.getLogger(XMLFileSearch.class);
 	
-	PersonInfo searchFile(String userInput) {
+	ArrayList<PersonInfo> searchFile(String userInput) {
 		logger.trace("FUNCTION ENTER: searchFile search person info in address book");
-		PersonInfo person = new PersonInfo();
+		ArrayList<PersonInfo> personFound = new ArrayList<PersonInfo>();
 		try{
 			DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = dFactory.newDocumentBuilder();
@@ -30,7 +31,6 @@ public class XMLFileSearch {
 			NodeList nodeTextPhone = file.getElementsByTagName("phone");
 			NodeList nodeTextAdress = file.getElementsByTagName("adress");
 			
-			System.out.println(nodeTextPhone.getLength());
 			for(int index = 0 ; index<nodeTextPhone.getLength() ; ++index){
 				Node nodePhone = nodeTextPhone.item(index).getFirstChild();
 				String phoneNumber = nodePhone.getNodeValue();
@@ -38,16 +38,22 @@ public class XMLFileSearch {
 					logger.debug("DEBUG: searchFile match found");
 					Node nodeName = nodeTextName.item(index).getFirstChild();
 					String name = nodeName.getNodeValue();
+					PersonInfo person = new PersonInfo();
 					person.setName(name);
 					Node nodeAdress = nodeTextAdress.item(index).getFirstChild();
 					String adress = nodeAdress.getNodeValue();
 					person.setAdress(adress);
 					person.setPhoneNumber(phoneNumber);
-					return person;
+					personFound.add(person);
 				}
 			}
-			logger.debug("DEBUG: searchFile no match found");
-			return null;
+			if(personFound.isEmpty() == true){
+				logger.debug("DEBUG: searchFile no match found");
+				return null;
+			}
+			else{
+				return personFound;
+			}
 		}
 		catch (ParserConfigurationException e) {
 			e.printStackTrace();
