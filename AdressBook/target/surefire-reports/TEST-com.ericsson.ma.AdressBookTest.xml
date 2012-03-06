@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.002" errors="0" skipped="0" tests="0" name="com.ericsson.ma.AdressBookTest">
+<testsuite failures="0" time="0.001" errors="0" skipped="0" tests="0" name="com.ericsson.ma.AdressBookTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="c:\Program Files\Java\jdk1.6.0_30\jre\bin"/>
@@ -19,7 +19,7 @@
     <property name="basedir" value="c:\Users\eligshn\JAVACodeRepository\AdressBook"/>
     <property name="java.endorsed.dirs" value="c:\Program Files\Java\jdk1.6.0_30\jre\lib\endorsed"/>
     <property name="os.arch" value="x86"/>
-    <property name="surefire.real.class.path" value="C:\Users\eligshn\AppData\Local\Temp\surefirebooter8597028132646755397.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\eligshn\AppData\Local\Temp\surefirebooter9212545948269010565.jar"/>
     <property name="java.io.tmpdir" value="C:\Users\eligshn\AppData\Local\Temp\"/>
     <property name="line.separator" value="
 "/>
@@ -43,7 +43,7 @@
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="32"/>
     <property name="java.home" value="c:\Program Files\Java\jdk1.6.0_30\jre"/>
-    <property name="sun.java.command" value="C:\Users\eligshn\AppData\Local\Temp\surefirebooter8597028132646755397.jar C:\Users\eligshn\AppData\Local\Temp\surefire3939664185989135707tmp C:\Users\eligshn\AppData\Local\Temp\surefire6033219063964183824tmp"/>
+    <property name="sun.java.command" value="C:\Users\eligshn\AppData\Local\Temp\surefirebooter9212545948269010565.jar C:\Users\eligshn\AppData\Local\Temp\surefire649781877057436172tmp C:\Users\eligshn\AppData\Local\Temp\surefire3211161269229515861tmp"/>
     <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
