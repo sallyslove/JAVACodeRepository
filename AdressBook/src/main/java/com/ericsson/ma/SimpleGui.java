@@ -80,11 +80,11 @@ public class SimpleGui extends Thread{
     public class TextListener implements ActionListener{
     	public void actionPerformed(ActionEvent e){
     		String userInput = textFieldUser.getText();
-    	
+    	        textFieldUser.setText(null);
+	 
     		XMLAddNewNode xmlHandle = new XMLAddNewNode();
     		XMLFileSearch xmlHandelSearch = new XMLFileSearch();
     		if(readOrWrite == true){
-    			textFieldUser.setText(null);
     			xmlHandle.addNewNode(userInput);
     		}
     		else{
