@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -31,28 +32,34 @@ public class XMLAddNewNode {
             DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = dFactory.newDocumentBuilder();
             Document file = builder.parse(new File("addressBook.xml"));
+            file.normalize();
             logger.debug("DEBUG: addNewNode open file addressBook.xml");
             
+            file.getDocumentElement().appendChild(file.createTextNode("  "));
             Element newNode = file.createElement("name");
             Text textMsg = file.createTextNode(personInfo[0]);
             newNode.appendChild(textMsg);
             file.getDocumentElement().appendChild(newNode);
+            file.getDocumentElement().appendChild(file.createTextNode("\n  "));
             logger.debug("DEBUG: addNewNode add node name");
             
             Element newNodePhone = file.createElement("phone");
             textMsg = file.createTextNode(personInfo[1]);
             newNodePhone.appendChild(textMsg);
             file.getDocumentElement().appendChild(newNodePhone);
+            file.getDocumentElement().appendChild(file.createTextNode("\n  "));
             logger.debug("DEBUG: addNewNode add node phone");
             
             Element newNodeAdress = file.createElement("adress");
             textMsg = file.createTextNode(personInfo[2]);
             newNodeAdress.appendChild(textMsg);
             file.getDocumentElement().appendChild(newNodeAdress);
+           
             logger.debug("DEBUG: addNewNode add node adress");
             TransformerFactory tFactory =TransformerFactory.newInstance();
             Transformer transformer;
             transformer = tFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT,"yes");
             DOMSource source = new DOMSource(file);
             StreamResult result = new StreamResult(new java.io.File("addressBook.xml"));
             transformer.transform(source, result);
