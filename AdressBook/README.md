@@ -1,5 +1,6 @@
 #Usage Method
    A simple GUI is implemented for the adress book programmer.  
+   Please run target/AdressBook-1.0.0-SNAPSHOT-shaded.jar with -Dlogback.configurationFile=src/logback.xml parameter
 
 ##Function offered
    You could create a new adress book by click on the create button.Then you have to input the info in the text field following a fixed format.Some examples are already offered in this README file.
