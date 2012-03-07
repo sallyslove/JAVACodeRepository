@@ -13,7 +13,7 @@ import com.ericsson.ma.SimpleGui;
 public class AdressBookMain {
     SimpleGui gui = new SimpleGui();
     
-    public void start(){
+    public static void main(String[]args){
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory(); 
         StatusPrinter.print(lc);
         ExecutorService threadPool = Executors.newCachedThreadPool();
