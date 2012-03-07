@@ -11,13 +11,14 @@ import ch.qos.logback.core.util.StatusPrinter;
 import com.ericsson.ma.SimpleGui;
 
 public class AdressBookMain {
-   
-	public static void main(String [] args){
-	    LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory(); 
-  	    StatusPrinter.print(lc);  
-		 ExecutorService threadPool = Executors.newCachedThreadPool();
-	     SimpleGui gui = new SimpleGui();     
-	     threadPool.execute(gui);
-	     threadPool.shutdown();
-	}
-}
+    SimpleGui gui = new SimpleGui();
+    
+    public void start(){
+        LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory(); 
+        StatusPrinter.print(lc);
+        ExecutorService threadPool = Executors.newCachedThreadPool();
+        SimpleGui gui = new SimpleGui();
+        threadPool.execute(gui);
+        threadPool.shutdown();
+        }
+    }
