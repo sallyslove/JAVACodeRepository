@@ -1,4 +1,6 @@
-﻿#Introduction
+﻿
+
+#Introduction  
    the application is a simple address book. A simple GUI is used for interaction.  
 
 #Usage Method   
