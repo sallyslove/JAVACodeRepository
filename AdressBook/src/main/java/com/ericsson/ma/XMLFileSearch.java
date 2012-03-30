@@ -44,7 +44,7 @@ public class XMLFileSearch {
                     Node nodeAdress = nodeTextAdress.item(index).getFirstChild();
                     String adress = nodeAdress.getNodeValue();
                     person.setAdress(adress);
-                    person.setPhoneNumber(phoneNumber);	
+                    person.setPhoneNumber(phoneNumber);
                     personFound.add(person);
                     }
                 }

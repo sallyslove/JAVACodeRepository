@@ -2,6 +2,7 @@ package com.ericsson.ma;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,6 +28,11 @@ public class XMLAddNewNode {
     void addNewNode(String userInput) {
         logger.trace("FUNCTION ENTER: addNewNode add new node in XML file");
         String[] personInfo = userInput.split("/");
+        if(!(Pattern.compile("[0-9]*").matcher(personInfo[1]).matches())){
+            logger.error("ERROR:phone number must be digitals!");
+            return;
+        }
+
         
         try{
             DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();

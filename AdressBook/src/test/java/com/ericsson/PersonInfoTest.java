@@ -32,4 +32,9 @@ public class PersonInfoTest {
         assertEquals("1223", person.getPhoneNumber());
     }
 
+    @Test
+    public void testSetPhoneNumberNeg(){
+        boolean result = person.setPhoneNumber("1783falk");
+        assertFalse(result);
+    }
 }
