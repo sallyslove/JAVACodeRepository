@@ -1,3 +1,9 @@
+/**
+* Created : Mar 12, 2012
+*
+* This file is the main entry.
+*
+*/
 package com.ericsson.ma;
 
 import java.util.concurrent.ExecutorService;
@@ -11,14 +17,13 @@ import ch.qos.logback.core.util.StatusPrinter;
 import com.ericsson.ma.SimpleGui;
 
 public class AdressBookMain {
-    SimpleGui gui = new SimpleGui();
     
     public static void main(String[]srgs){
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory(); 
         StatusPrinter.print(lc);
         ExecutorService threadPool = Executors.newCachedThreadPool();
-	AdressBookMain main = new AdressBookMain();
-        threadPool.execute(main.gui);
+        SimpleGui gui = new SimpleGui();
+        threadPool.execute(gui);
         threadPool.shutdown();
         }
     }
