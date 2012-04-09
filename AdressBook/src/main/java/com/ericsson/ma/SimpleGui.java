@@ -6,6 +6,7 @@
 */
 package com.ericsson.ma;
 import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -37,27 +38,34 @@ public class SimpleGui extends Thread{
     JTextField textFieldUser = new JTextField(20);
     JMenuBar menuBar = new JMenuBar();
     JMenu menuFile = new JMenu("File");
+    JMenu menuHelp = new JMenu("Help");
     JMenuItem menuCreate = new JMenuItem("Create");
     JMenuItem menuSearch = new JMenuItem("Search");
     JMenuItem menuExit = new JMenuItem("Exit");
+    JMenuItem menuAbout = new JMenuItem("About addressBook");
   
     //this flag shows read the xml file or write the xml file 
     boolean readOrWrite = false;  // read
     Font bigFont = new Font("sanserif", Font.BOLD, 16);
     Logger logger = LoggerFactory.getLogger(SimpleGui.class);
     
+    //menu
     public void handleMenu(){
         menuFile.add(menuCreate);
         menuFile.add(menuSearch);
         menuFile.add(menuExit);
+        menuHelp.add(menuAbout);
         menuBar.add(menuFile);
+        menuBar.add(menuHelp);
         menuBar.getAccessibleContext();
         menuCreate.addActionListener(new MenuCreateListerner());
         menuSearch.addActionListener(new MenuSearchListener());
         menuExit.addActionListener(new MenuExitListener());
+        menuAbout.addActionListener(new MenuAboutListener());
         }
     
     
+    //text field
     public void setTextField(){
         textFieldProgram.setEditable(false);
         textFieldProgram.setFont(bigFont);
@@ -69,6 +77,7 @@ public class SimpleGui extends Thread{
         textFieldUser.addActionListener(new TextListener());
         }
     
+    //panel
     public void setPanel(){
         panel.setBackground(Color.WHITE);
         panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
@@ -77,6 +86,7 @@ public class SimpleGui extends Thread{
         panel.add(textFieldUser);
     }
     
+    //start 
     public void run() {
         logger.trace("FUNCTION ENTER: generate gui");
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -96,9 +106,7 @@ public class SimpleGui extends Thread{
             xmlHandle.generateXMLFile();    
             xmlHandle = null;
             textFieldProgram.setText(" please input the info in the following textfield!"+"\n");
-            textFieldProgram.append(" format as Mark/021-12345678/Tianshan Road");
-            textFieldProgram.append("\n please end with an enter");
-            textFieldProgram.append("\n whenever you finish input,just click on search button to start search");
+            textFieldProgram.append(" E.g. Mark/021-12345678/Tianshan Road");
             readOrWrite = true; //write
             }
         }
@@ -106,9 +114,7 @@ public class SimpleGui extends Thread{
     
     public class MenuSearchListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
-            textFieldProgram.setText("please input the phone number."+"\n"+"you could just input part of the phone number"+"\n");
-            textFieldProgram.append("For example: if you wish to search phone number 12345, you could just input 123."+"\n");
-            textFieldProgram.append("please end your input with an enter!");
+            textFieldProgram.setText("please input the phone number."+"\n");
             readOrWrite = false; //read
             }
         }
@@ -116,6 +122,12 @@ public class SimpleGui extends Thread{
     public class MenuExitListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             System.exit(0);
+            }
+        }
+    
+    public class MenuAboutListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            JOptionPane.showMessageDialog(frame, "Version 1.0", "About addressBook", 1);
             }
         }
     
