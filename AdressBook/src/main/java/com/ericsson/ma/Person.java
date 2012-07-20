@@ -5,15 +5,13 @@
  */
 package com.ericsson.ma;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class PersonInfo {
+public class Person {
     private String adress;
     private String name;
     private String phoneNumber;
     
-    public PersonInfo(){
+    public Person(){
         super();
         adress = "";
         name = "";
@@ -43,16 +41,10 @@ public class PersonInfo {
 	    return phoneNumber;
 	    }
     
-    public boolean setPhoneNumber(String phoneNumber) {
-        Pattern pattern = Pattern.compile("[0-9]*");
-        Matcher isNum = pattern.matcher(phoneNumber);
-        if (!isNum.matches()) {            
-            return false;
-            }
-        else{
-            this.phoneNumber = phoneNumber;
-            return true;
-            }
-	    }    
+    public void setPhoneNumber(String phoneNumber) {
+       Util util = new Util();
+       if(util.isNum(phoneNumber)){
+           this.phoneNumber = phoneNumber;
+       }
     }
-
+}

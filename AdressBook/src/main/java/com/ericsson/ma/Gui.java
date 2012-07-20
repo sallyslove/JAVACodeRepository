@@ -1,10 +1,5 @@
-/**
-* Created : Mar 12, 2012
-*
-* This file is to build a simple GUI to interact with user.
-* textFieldUser is for user input.
-*/
 package com.ericsson.ma;
+
 import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -15,6 +10,7 @@ import javax.swing.JTextArea;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
@@ -23,13 +19,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.ericsson.ma.XMLFileGenerate;
 import com.ericsson.ma.XMLFileSearch;
 import com.ericsson.ma.XMLAddNewNode;
 
-public class SimpleGui extends Thread{
+public class Gui extends Thread{
     JFrame frame = new JFrame("Adress Book");
     JPanel panel = new JPanel();
     JButton buttonCreate = new JButton("Create new adress book! ");
@@ -47,7 +44,7 @@ public class SimpleGui extends Thread{
     //this flag shows read the xml file or write the xml file 
     boolean readOrWrite = false;  // read
     Font bigFont = new Font("sanserif", Font.BOLD, 16);
-    Logger logger = LoggerFactory.getLogger(SimpleGui.class);
+    Logger logger = LoggerFactory.getLogger(Gui.class);
     
     //menu
     public void handleMenu(){
@@ -143,10 +140,14 @@ public class SimpleGui extends Thread{
             XMLAddNewNode xmlHandle = new XMLAddNewNode();
             XMLFileSearch xmlHandelSearch = new XMLFileSearch();
             if(readOrWrite == true){
-                xmlHandle.addNewNode(userInput);
+                try {
+                    xmlHandle.addNewNode(userInput);
+                } catch (TransformerFactoryConfigurationError e1) {
+                } catch (IOException e1) {
+                }
                 }
             else{
-                ArrayList<PersonInfo> person = xmlHandelSearch.searchFile(userInput);
+                ArrayList<Person> person = xmlHandelSearch.searchFile(userInput);
                 
                 if(person == null){
                     textFieldProgram.setText("no mapping found");

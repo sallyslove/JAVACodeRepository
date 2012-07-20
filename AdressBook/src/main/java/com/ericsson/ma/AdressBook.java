@@ -14,15 +14,15 @@ import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.core.util.StatusPrinter;
 
-import com.ericsson.ma.SimpleGui;
+import com.ericsson.ma.Gui;
 
-public class AdressBookMain {
+public class AdressBook {
     
     public static void main(String[]srgs){
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory(); 
         StatusPrinter.print(lc);
         ExecutorService threadPool = Executors.newCachedThreadPool();
-        SimpleGui gui = new SimpleGui();
+        Gui gui = new Gui();
         threadPool.execute(gui);
         threadPool.shutdown();
         }

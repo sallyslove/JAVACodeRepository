@@ -2,7 +2,10 @@ package com.ericsson.ma;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,17 +13,17 @@ import org.junit.Test;
 public class XMLFileSearchTest {
     XMLFileSearch xmlFileSearch = null;
     XMLAddNewNode xmlAddNode = null;
-    ArrayList<PersonInfo> personFound = null;
+    ArrayList<Person> personFound = null;
     
     @Before
     public void createXmlFileSearchInstance(){
         xmlFileSearch = new XMLFileSearch();
         xmlAddNode = new XMLAddNewNode();
-        personFound = new ArrayList<PersonInfo>();
+        personFound = new ArrayList<Person>();
         }
     
     @Test
-    public void testSearchFile() {
+    public void testSearchFile() throws TransformerFactoryConfigurationError, IOException {
         String person = "mark/23784762/changning";
         xmlAddNode.addNewNode(person);
         String phone = "237847";

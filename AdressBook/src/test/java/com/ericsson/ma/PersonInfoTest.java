@@ -5,12 +5,14 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.ericsson.ma.Person;
+
 public class PersonInfoTest {
-    PersonInfo person = null;
+    Person person = null;
     
     @Before
     public void createPersonInstance(){
-        person = new PersonInfo();
+        person = new Person();
     }
     
     @Test
@@ -34,7 +36,7 @@ public class PersonInfoTest {
 
     @Test
     public void testSetPhoneNumberNeg(){
-        boolean result = person.setPhoneNumber("1783falk");
-        assertFalse(result);
+        person.setPhoneNumber("1783falk");
+        assertNotSame("1783falk", person.getPhoneNumber());
     }
 }

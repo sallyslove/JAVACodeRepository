@@ -19,9 +19,9 @@ import org.xml.sax.SAXException;
 public class XMLFileSearch {
     Logger logger = LoggerFactory.getLogger(XMLFileSearch.class);
     
-    ArrayList<PersonInfo> searchFile(String userInput) {
+    ArrayList<Person> searchFile(String userInput) {
         logger.trace("FUNCTION ENTER: searchFile search person info in address book");
-        ArrayList<PersonInfo> personFound = new ArrayList<PersonInfo>();
+        ArrayList<Person> personFound = new ArrayList<Person>();
         
         try{
             DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
@@ -39,7 +39,7 @@ public class XMLFileSearch {
                     logger.debug("DEBUG: searchFile match found");
                     Node nodeName = nodeTextName.item(index).getFirstChild();
                     String name = nodeName.getNodeValue();
-                    PersonInfo person = new PersonInfo();
+                    Person person = new Person();
                     person.setName(name);
                     Node nodeAdress = nodeTextAdress.item(index).getFirstChild();
                     String adress = nodeAdress.getNodeValue();
