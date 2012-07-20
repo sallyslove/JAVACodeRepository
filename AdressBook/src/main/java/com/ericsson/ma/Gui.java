@@ -22,32 +22,31 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.ericsson.ma.XMLFileGenerate;
 import com.ericsson.ma.XMLFileSearch;
 import com.ericsson.ma.XMLAddNewNode;
 
 public class Gui extends Thread{
-    JFrame frame = new JFrame("Adress Book");
-    JPanel panel = new JPanel();
-    JButton buttonCreate = new JButton("Create new adress book! ");
-    JButton buttonSearch = new JButton("Search person");
-    JTextArea textFieldProgram  = new JTextArea();
-    JTextField textFieldUser = new JTextField(20);
-    JMenuBar menuBar = new JMenuBar();
-    JMenu menuFile = new JMenu("File");
-    JMenu menuHelp = new JMenu("Help");
-    JMenuItem menuCreate = new JMenuItem("Create");
-    JMenuItem menuSearch = new JMenuItem("Search");
-    JMenuItem menuExit = new JMenuItem("Exit");
-    JMenuItem menuAbout = new JMenuItem("About addressBook");
+    private JFrame frame = new JFrame("Adress Book");
+    private JPanel panel = new JPanel();
+    private JButton buttonCreate = new JButton("Create new adress book! ");
+    private JButton buttonSearch = new JButton("Search person");
+    private JTextArea textFieldProgram  = new JTextArea();
+    private JTextField textFieldUser = new JTextField(20);
+    private JMenuBar menuBar = new JMenuBar();
+    private JMenu menuFile = new JMenu("File");
+    private JMenu menuHelp = new JMenu("Help");
+    private JMenuItem menuCreate = new JMenuItem("Create");
+    private JMenuItem menuSearch = new JMenuItem("Search");
+    private JMenuItem menuExit = new JMenuItem("Exit");
+    private JMenuItem menuAbout = new JMenuItem("About addressBook");
   
     //this flag shows read the xml file or write the xml file 
-    boolean readOrWrite = false;  // read
-    Font bigFont = new Font("sanserif", Font.BOLD, 16);
-    Logger logger = LoggerFactory.getLogger(Gui.class);
+    private boolean readOrWrite = false;  // read
+    private Font bigFont = new Font("sanserif", Font.BOLD, 16);
+    private Logger logger = LoggerFactory.getLogger(Gui.class);
     
     //menu
-    public void handleMenu(){
+    private void handleMenu(){
         menuFile.add(menuCreate);
         menuFile.add(menuSearch);
         menuFile.add(menuExit);
@@ -63,7 +62,7 @@ public class Gui extends Thread{
     
     
     //text field
-    public void setTextField(){
+    private void setTextField(){
         textFieldProgram.setEditable(false);
         textFieldProgram.setFont(bigFont);
         textFieldProgram.setLineWrap(true);
@@ -75,7 +74,7 @@ public class Gui extends Thread{
         }
     
     //panel
-    public void setPanel(){
+    private void setPanel(){
         panel.setBackground(Color.WHITE);
         panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
         setTextField();
@@ -96,8 +95,8 @@ public class Gui extends Thread{
         frame.setSize(500, 500);
         frame.setVisible(true);
         }
-    
-    public class MenuCreateListerner implements ActionListener{
+
+    private class MenuCreateListerner implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             XMLFileGenerate xmlHandle = new XMLFileGenerate();
             xmlHandle.generateXMLFile();    
@@ -109,26 +108,26 @@ public class Gui extends Thread{
         }
     
     
-    public class MenuSearchListener implements ActionListener{
+    private class MenuSearchListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             textFieldProgram.setText("please input the phone number."+"\n");
             readOrWrite = false; //read
             }
         }
     
-    public class MenuExitListener implements ActionListener{
+    private class MenuExitListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             System.exit(0);
             }
         }
     
-    public class MenuAboutListener implements ActionListener{
+    private class MenuAboutListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             JOptionPane.showMessageDialog(frame, "Version 1.0", "About addressBook", 1);
             }
         }
     
-    public class TextListener implements ActionListener{
+    private class TextListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             String userInput = textFieldUser.getText();
             textFieldUser.setText(null);

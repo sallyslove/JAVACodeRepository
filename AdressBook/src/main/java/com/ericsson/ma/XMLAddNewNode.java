@@ -22,7 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class XMLAddNewNode {
-    Logger logger = LoggerFactory.getLogger(XMLAddNewNode.class);
+    private static final Logger logger = LoggerFactory.getLogger(XMLAddNewNode.class);
 
     public void addNewNode(String input) throws TransformerFactoryConfigurationError, IOException {
         logger.trace("FUNCTION ENTER: addNewNode add new node in XML file");
