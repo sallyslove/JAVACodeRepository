@@ -19,6 +19,9 @@ import com.ericsson.ma.Gui;
 public class AdressBook {
     
     public static void main(String[]srgs){
+        System.out.println(AdressBook.class.getResource("").toString());
+        System.setProperty("logback.configurationFile", "src/logback.xml");
+        System.out.println(System.getProperty("logback.configurationFile"));
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory(); 
         StatusPrinter.print(lc);
         ExecutorService threadPool = Executors.newCachedThreadPool();
