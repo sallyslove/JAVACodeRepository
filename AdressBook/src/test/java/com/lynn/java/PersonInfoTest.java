@@ -1,11 +1,11 @@
-package com.ericsson.ma;
+package com.lynn.java;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.ericsson.ma.Person;
+import com.lynn.java.addressbook.Person;
 
 public class PersonInfoTest {
     Person person = null;
