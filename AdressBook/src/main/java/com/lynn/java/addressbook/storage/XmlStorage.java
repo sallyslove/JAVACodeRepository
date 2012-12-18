@@ -1,18 +1,14 @@
 package com.lynn.java.addressbook.storage;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 import com.lynn.java.addressbook.Person;
 import com.lynn.java.addressbook.util.Util;
@@ -29,6 +25,9 @@ public class XmlStorage implements Storage {
 
     public XmlStorage() {
         super();
+        names = new ArrayList<String>();
+        phone = new ArrayList<String>();
+        address = new ArrayList<String>();
         personInfo = new HashMap<String, Person>();
     }
 
@@ -37,12 +36,9 @@ public class XmlStorage implements Storage {
         logger.trace("FUNCTION ENTER: generate XML file");
         try {
             XmlUtil.generateNewXmlFile(fileName, rootNodeName);
-        } catch (IOException e) {
-            logger.error("ERROR: error happened in IO, fail to create Doc");
-        } catch (ParserConfigurationException e) {
-            logger.error("ERROR: error happened in ParseConfiguration, fail to create Doc");
-        } catch (TransformerException e) {
-            logger.error("ERROR: error happened in Transformer, fail to create Doc");
+        } catch (Exception e) {
+            XmlUtil.xmlErrorHandler(e);
+            logger.error("ERROR: fail to create doc");
         }
     }
 
@@ -55,12 +51,9 @@ public class XmlStorage implements Storage {
             phone = XmlUtil.parseXmlFile("phone", file);
             address = XmlUtil.parseXmlFile("address", file);
             transformData();
-        } catch (SAXException e) {
-            logger.error("ERROR: load data error happened in SAX");
-        } catch (IOException e) {
-            logger.error("ERROR: load data error happened in IO");
-        } catch (ParserConfigurationException e) {
-            logger.error("ERROR: load data error happened in ParserConfiguration");
+        } catch (Exception e) {
+            XmlUtil.xmlErrorHandler(e);
+            logger.error("ERROR: load data error");
         }
     }
 
@@ -81,24 +74,19 @@ public class XmlStorage implements Storage {
 
     @Override
     public void refreshData() {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void deleteData() {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public Object searchData() {
-        return null;
-        // TODO Auto-generated method stub
+        return Collections.emptyList();
     }
 
     @Override
     public void saveData() {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -114,24 +102,17 @@ public class XmlStorage implements Storage {
             XmlUtil.addNode(file, person[1], "phone");
             XmlUtil.addNode(file, person[2], "address");
             XmlUtil.writeXmlFile(file, fileName);
-        } catch (SAXException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (TransformerException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (Exception e) {
+            XmlUtil.xmlErrorHandler(e);
+            logger.error("ERROR: refresh data error");
         }
-
     }
 
     private String[] convertInputToPerson(String input) {
-        String[] person = input.split("/");
+        String[] person = {};
+        if (input.contains("/")) {
+            person = input.split("/");
+        }
         return person;
     }
 
@@ -141,12 +122,10 @@ public class XmlStorage implements Storage {
 
     @Override
     public void loadData(Object obj) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void deleteData(Object obj) {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -163,7 +142,6 @@ public class XmlStorage implements Storage {
 
     @Override
     public void savaData(Object obj) {
-        // TODO Auto-generated method stub
     }
 
     @Override

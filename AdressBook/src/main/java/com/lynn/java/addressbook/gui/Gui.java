@@ -118,7 +118,7 @@ public class Gui {
     private class TextListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String userInput = textFieldUser.getText();
-            textFieldUser.setText(null);
+            textFieldUser.setText("");
             if (userInput.isEmpty()) {
                 logger.debug("SimpleGui: the input from user is empty!");
                 return;
@@ -139,7 +139,7 @@ public class Gui {
         private void search(String userInput, XmlStorage xmlHandelSearch) {
             ArrayList<Person> searchData = (ArrayList<Person>) xmlHandelSearch.searchData(userInput);
             ArrayList<Person> person = searchData;
-            textFieldProgram.setText(null);
+            textFieldProgram.setText("");
             if (person.isEmpty() != true) {
                 for (short index = 0; index < person.size(); ++index) {
                     textFieldProgram.append("name Found:  " + person.get(index).getName() + "\n");

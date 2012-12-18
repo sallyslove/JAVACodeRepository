@@ -77,4 +77,17 @@ public class XmlUtil {
         StreamResult result = new StreamResult(new File(fileName));
         transformer.transform(source, result);
     }
+    
+    public static void xmlErrorHandler(Exception e) {
+        if(e instanceof IOException){
+            logger.error("ERROR: error happened in IO");
+        } else if (e instanceof ParserConfigurationException){
+            logger.error("ERROR: error happened in ParseConfiguration");
+        } else if(e instanceof TransformerException){
+            logger.error("ERROR: error happened in Transformer");
+        } else if (e instanceof SAXException){
+            logger.error("ERROR: error happened in SAE");
+        }
+            
+    }
 }
