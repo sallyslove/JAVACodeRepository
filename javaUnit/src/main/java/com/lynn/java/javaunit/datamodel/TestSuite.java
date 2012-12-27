@@ -1,16 +1,14 @@
-package com.lynn.java.javaunit.runner;
+package com.lynn.java.javaunit.datamodel;
 
 import java.lang.reflect.Method;
 import java.util.List;
+
+import com.lynn.java.javaunit.runner.TestRunnerAssistant;
 
 public class TestSuite {
     private String className;
     private List<Method> testCases;
     private final String TEST_ANNOTATION_NAME = "Test";
-
-    public void getMethodsOfOneSuite(String className) throws SecurityException, ClassNotFoundException {
-        testCases = TestRunnerAssistant.getAnnotatedMethods(className, TEST_ANNOTATION_NAME);
-    }
 
     public String getClassName() {
         return className;
@@ -20,8 +18,13 @@ public class TestSuite {
         this.className = className;
     }
 
-    public List<Method> getTestCases() {
+    public List<Method> getTestCases() throws SecurityException, ClassNotFoundException {
+        getMethodsOfOneSuite(className);
         return testCases;
+    }
+    
+    private void getMethodsOfOneSuite(String className) throws SecurityException, ClassNotFoundException {
+        testCases = TestRunnerAssistant.getAnnotatedMethods(className, TEST_ANNOTATION_NAME);
     }
 
     public void setTestCases(List<Method> testCases) {

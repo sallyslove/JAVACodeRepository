@@ -1,29 +1,21 @@
 package com.lynn.java.javaunit.runner;
 
-import java.lang.reflect.Method;
-
-import com.lynn.java.javaunit.annotations.Test;
+import com.lynn.java.javaunit.datamodel.TestSuite;
 
 public class TestRunner {
 
     public static void main(String[] args) {
-       for(String className : args){
-           
-       }
+        TestSuite testSuite = new TestSuite();
+        testSuite.setClassName(args[0]);
+        try {
+            TestRunnerAssistant.runATestSuite(testSuite);
+        } catch (SecurityException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
 }
-
-//
-//int passed = 0, failed = 0;
-//for (Method method : Class.forName(args[0]).getMethods()) {
-//    if (method.isAnnotationPresent(Test.class)) {
-//        try {
-//            method.invoke(null);
-//            passed++;
-//        } catch (Throwable ex) {
-//            System.out.printf("Test %s failed: %s %n", method, ex.getCause());
-//            failed++;
-//        }
-//    }
-//}
-//System.out.printf("Passed: %d, Failed %d%n", passed, failed);
