@@ -31,15 +31,7 @@ public class TestRunnerAssistant {
                 test.invoke(null);
                 testResult.incrementCaseSucceed();
                 testResult.incrementCaseFailed();
-            } catch (AssertError ex) {
-
-            } catch (IllegalArgumentException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
+            } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
